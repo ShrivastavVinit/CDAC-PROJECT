@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,13 +19,18 @@ import lombok.ToString;
 @Entity
 @Table(name="Bookings")
 @ToString(callSuper = true)
-@NoArgsConstructor
+//@NoArgsConstructor
 @Getter
 @Setter
 
 public class Bookings extends BaseEntity{
 	
-	@Column(name="venue",length = 30)
+	
+	public Bookings() {
+		super();
+	}
+
+	@Column(name="Event_venue",length = 30)
 	private String venue;
 	
 	@Column(name="Event_Date")
@@ -42,8 +47,7 @@ public class Bookings extends BaseEntity{
 	@JoinColumn(name="C_id")
 	private Customer customer;
 	
-	@OneToOne
-	@JoinColumn(name="booking")
+	@OneToOne(mappedBy = "bookingItem")
 	private CartItems items;
 
 }

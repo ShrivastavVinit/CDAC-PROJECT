@@ -16,15 +16,26 @@ import lombok.ToString;
 @Entity
 @Table(name="cart_items")
 @ToString(callSuper = true)
-@NoArgsConstructor
+//@NoArgsConstructor
 @Getter
 @Setter
 
 public class CartItems extends BaseEntity {
 	
+	
+	
+	public CartItems() {
+		super();
+	}
+
+
+	@Column
 	private int quantity;
-	@Column(name="total_price")
-	private double totalPrice;
+	
+	@Column(name="price")
+	private double Price;
+	
+	
 	//CartItem *---->1 Cart
 	@ManyToOne
 	@JoinColumn(name="cart_id")
@@ -33,8 +44,49 @@ public class CartItems extends BaseEntity {
 	
 	//CartItem 1--->1 Booking
 		@OneToOne
-		@JoinColumn(name="booking")
-		private Bookings items;
+		@JoinColumn(name="items")
+		private Bookings bookingItem;
+
+
+		public int getQuantity() {
+			return quantity;
+		}
+
+
+		public void setQuantity(int quantity) {
+			this.quantity = quantity;
+		}
+
+
+		public double getPrice() {
+			return Price;
+		}
+
+
+		public void setPrice(double price) {
+			Price = price;
+		}
+
+
+		public Cart getCart() {
+			return cart;
+		}
+
+
+		public void setCart(Cart cart) {
+			this.cart = cart;
+		}
+
+
+		public Bookings getBookingItem() {
+			return bookingItem;
+		}
+
+
+		public void setBookingItem(Bookings bookingItem) {
+			this.bookingItem = bookingItem;
+		}
 	
+		
 
 }
