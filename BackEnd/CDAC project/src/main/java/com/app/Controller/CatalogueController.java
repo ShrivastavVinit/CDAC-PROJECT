@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.CatalogueDTO;
 import com.app.pojos.Catalogue;
 
 import com.app.service.CatalogueService;
@@ -35,14 +36,14 @@ public class CatalogueController {
 	}
 	
 	@GetMapping
-	public List<Catalogue> getCatalogueItem()
+	public List<CatalogueDTO> getCatalogueItem()
 	{
 		System.out.println("in get catalogue");
 		return ctlg.getAllcatalogueDetails();
 	}
 	
 	@PostMapping
-	public Catalogue addNewCatalogueItem(@RequestBody Catalogue cat)
+	public Catalogue addNewCatalogueItem(@RequestBody CatalogueDTO cat)
 	{
 		System.out.println("in save catalogue "+cat);
 		return ctlg.addNewCatalogueItem(cat);
@@ -51,6 +52,7 @@ public class CatalogueController {
 	@DeleteMapping("/{id}")
 	public String deleteCatalogueItem(@PathVariable Long id)
 	{
+		System.out.println(id);
 		return ctlg.deleteCatalogueItem(id);
 	}
 

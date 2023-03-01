@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,11 +16,6 @@ import lombok.ToString;
 @Entity
 @Table(name="Catalogue")
 @ToString(callSuper = true)
-//@NoArgsConstructor
-@Getter
-@Setter
-
-//this class acts as event register for vendor
 public class Catalogue extends BaseEntity {
 	
 	
@@ -33,8 +30,10 @@ public class Catalogue extends BaseEntity {
 	@Column(name="rate_per_6_hrs")
 	private double rate;
 	
+	
 	@ManyToOne
-	@JoinColumn(name = "vendor_id")
+	@JoinColumn(name = "vendor_id",nullable = false)
+	@JsonBackReference
 	private Vendor vendors;
 
 	public String getEventName() {
@@ -60,6 +59,15 @@ public class Catalogue extends BaseEntity {
 //	public void setVendors(Vendor vendors) {
 //		this.vendors = vendors;
 //	}
+
+	public Catalogue(String eventName, double rate, Vendor vendors) {
+		super();
+		EventName = eventName;
+		this.rate = rate;
+		this.vendors = vendors;
+	}
+	
+	
 	
 	
 	

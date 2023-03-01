@@ -52,9 +52,9 @@ public class Customer extends BaseEntity {
 	@Column(name="c_address",length = 30)
 	private String Address;
 	
-	// customer 1--->* bookings
-//	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//	private List<Bookings> bookingList = new ArrayList<Bookings>();
+//	 customer 1--->* bookings
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private List<Bookings> bookingList = new ArrayList<Bookings>();
 	
 	// customer 1--->1 Cart
 		@OneToOne(mappedBy = "customers", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -137,9 +137,9 @@ public class Customer extends BaseEntity {
 		Address = address;
 	}
 
-//	public List<Bookings> getBookingList() {
-//		return bookingList;
-//	}
+	public List<Bookings> getBookingList() {
+		return bookingList;
+	}
 //
 //
 //	public void setBookingList(List<Bookings> bookingList) {

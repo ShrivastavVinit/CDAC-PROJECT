@@ -6,12 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,13 +21,13 @@ import lombok.ToString;
 
 @Entity
 @Table(name="Vendors")
-@ToString(callSuper = true, exclude = "password")
+//@ToString(callSuper = true, exclude = "password")
 //@NoArgsConstructor
 @Getter
 @Setter
 public class Vendor extends BaseEntity {
 	
-	
+//	
 	
 	public Vendor() {
 		super();
@@ -39,25 +40,29 @@ public class Vendor extends BaseEntity {
 	
 	@Column(name="Mobile_number")
 	private long contactNumber;
+	
+	
 	@Email
 	@Column(name="v_email",length = 30, unique = true)
 	private String email;
 	
 
-	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,16}$",
-			message = "password must contain atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
+	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,16}$",message = "password must contain atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
 	@Column(name="v_pass",length = 30, nullable = false)
 	private String password;
 	
 	@Column(name="v_address",length = 30)
 	private String Address;
 	
-	@OneToMany(mappedBy = "vendors", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private List<Catalogue> eventList = new ArrayList<Catalogue>();
+	
+	@OneToMany(mappedBy = "vendors",cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<Catalogue> eventList=new ArrayList<Catalogue>();
 	
 	
-	@OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private List<Bookings> bookings = new ArrayList<Bookings>();
+	@OneToMany(mappedBy = "vendor",cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<Bookings> bookings=new ArrayList<Bookings>();
 	
 	
 
@@ -153,6 +158,14 @@ public class Vendor extends BaseEntity {
 
 	public void setBookings(List<Bookings> bookings) {
 		this.bookings = bookings;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Vendor [Name=" + Name + ", contactNumber=" + contactNumber + ", email=" + email + ", Address=" + Address
+				+ "]";
 	}
 	
 	

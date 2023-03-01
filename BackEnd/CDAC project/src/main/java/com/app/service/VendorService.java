@@ -8,7 +8,7 @@ import com.app.pojos.Vendor;
 
 public interface VendorService {
 
-	 List<Vendor> getAllVendorDetails(); 
+	 List<VendorDTO> getAllVendorDetails(); 
 		
 	    Vendor addNewVendor(VendorDTO vendor);
 		

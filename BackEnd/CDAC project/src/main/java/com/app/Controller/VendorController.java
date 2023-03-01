@@ -32,7 +32,7 @@ public class VendorController {
 	
 
 	@GetMapping
-	public List<Vendor> getVendor()
+	public List<VendorDTO> getVendor()
 	{
 		System.out.println("in get Vendor");
 		 System.out.println(vdr.getAllVendorDetails());

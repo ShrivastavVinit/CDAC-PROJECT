@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,12 +41,16 @@ public class Bookings extends BaseEntity{
 	@Column(name="Event_Time")
 	private LocalDateTime time;
 	
+	
 	@ManyToOne
 	@JoinColumn(name="V_id")
+	@JsonBackReference
 	private Vendor vendor;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="C_id")
+	@JsonBackReference
 	private Customer customer;
 	
 	@OneToOne(mappedBy = "bookingItem")

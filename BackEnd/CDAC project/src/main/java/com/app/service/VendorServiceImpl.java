@@ -1,6 +1,7 @@
 package com.app.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -13,7 +14,6 @@ import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dto.LoginRequestDto;
 import com.app.dto.VendorDTO;
 import com.app.pojos.Vendor;
-
 import com.app.repository.VendorRepository;
 
 @Service
@@ -27,9 +27,11 @@ public class VendorServiceImpl implements VendorService {
 	private ModelMapper mapper;
 	
 	@Override
-	public List<Vendor> getAllVendorDetails()
+	public List<VendorDTO> getAllVendorDetails()
 	{
-		return VendorRepo.findAll();
+		return VendorRepo.findAll().stream().map(e -> mapper.map(e, VendorDTO.class)) // Entity --> DTO
+				.collect(Collectors.toList());
+
 	}
 	
 //	@Override
@@ -38,6 +40,12 @@ public class VendorServiceImpl implements VendorService {
 //		return VendorRepo.save(vendor);
 //	}
 	
+	@Override
+	public Vendor addNewVendor(VendorDTO vendor) {
+		
+		Vendor vendors=mapper.map(vendor,Vendor.class);// DTO --> Entity
+		return VendorRepo.save(vendors);
+	}
 	
 	
 	@Override
@@ -48,12 +56,7 @@ public class VendorServiceImpl implements VendorService {
 		return "Vendor Deleted Successfully";
 	}
 
-@Override
-public Vendor addNewVendor(VendorDTO vendor) {
-	
-	Vendor vendors=mapper.map(vendor,Vendor.class);
-	return VendorRepo.save(vendors);
-}
+
 
 @Override
 public Vendor authenticateVendor(LoginRequestDto dto) {

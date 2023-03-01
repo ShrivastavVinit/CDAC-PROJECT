@@ -2,15 +2,16 @@ package com.app.service;
 
 import java.util.List;
 
+import com.app.dto.CustomerDTO;
 import com.app.dto.LoginRequestDto;
 import com.app.pojos.Customer;
 
 public interface CustomerService {
 
 	
-  List<Customer> getAllCustomerDetails(); 
+  List<CustomerDTO> getAllCustomerDetails(); 
 	
-  Customer addNewCustomer(Customer cstmr);
+  	Customer addNewCustomer(CustomerDTO cstmr);
 	
 	String deleteCustomer(Long id);	
 	
