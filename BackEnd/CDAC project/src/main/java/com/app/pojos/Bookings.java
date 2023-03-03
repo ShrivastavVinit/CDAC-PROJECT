@@ -54,6 +54,7 @@ public class Bookings extends BaseEntity{
 	private Customer customer;
 	
 	@OneToOne(mappedBy = "bookingItem")
+	@JsonBackReference
 	private CartItems items;
 
 }

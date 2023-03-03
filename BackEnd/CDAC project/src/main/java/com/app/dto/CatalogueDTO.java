@@ -1,6 +1,6 @@
 package com.app.dto;
 
-
+import com.app.pojos.Vendor;
 
 public class CatalogueDTO {
 	
@@ -8,28 +8,28 @@ public class CatalogueDTO {
 	
 	private double rate;
 	
-	private Long v_id;
+	private Long vendorID;
 	
 	public CatalogueDTO() {
 		super();
 	}
 
 
-	public CatalogueDTO(String eventName, double rate, Long v_id) {
+	public CatalogueDTO(String eventName, double rate,Long vendorID) {
 		super();
 		EventName = eventName;
 		this.rate = rate;
-		this.v_id = v_id;
+		this.vendorID=vendorID;
+		
+	}
+	
+	public Long getVendorID() {
+		return vendorID;
 	}
 
 
-	public Long getV_id() {
-		return v_id;
-	}
-
-
-	public void setV_id(Long v_id) {
-		this.v_id = v_id;
+	public void setVendorID(Long V_id) {
+		this.vendorID = V_id;
 	}
 
 

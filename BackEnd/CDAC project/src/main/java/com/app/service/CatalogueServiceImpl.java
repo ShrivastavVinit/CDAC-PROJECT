@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.app.dto.CatalogueDTO;
 
 import com.app.pojos.Catalogue;
+import com.app.pojos.Vendor;
 import com.app.repository.CatalogueRepository;
 
 @Service
@@ -34,17 +35,23 @@ public class CatalogueServiceImpl implements CatalogueService {
 	@Override
 	public Catalogue addNewCatalogueItem(CatalogueDTO ctl) {
 		// TODO Auto-generated method stub
+		
+		
 		Catalogue catalogues=mapper.map(ctl,Catalogue.class);// DTO --> Entity
 		System.out.println(catalogues);
 		return ctlRepo.save(catalogues);
+		
 	}
 
 	@Override
 	public String deleteCatalogueItem(Long id) {
 		// TODO Auto-generated method stub
+		
 		System.out.println("in impl " + id);
 		ctlRepo.deleteById(id);
 		return "Deleted Successfully";
+		
 	}
+		
 
 }
