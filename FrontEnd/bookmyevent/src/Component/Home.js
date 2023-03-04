@@ -33,7 +33,7 @@ function Home() {
                     <ul>
                         {/* <li>We have used enhanced protection features of JWT based authentication (with bcrypt password hashing) </li>
                         <li>This provides security on multiple layers of attacks and this is what makes our portal a one stop shop for all your recruitment needs in a secure environment.</li> */}
-                        <li>Our technology is based on J2EE which has a platform-independent build and that helps deploying Web-based enterprise applications online swiftly in no time.</li>
+                        <li>Our technology is based on SpringBoot which has a platform-independent build and that helps deploying Web-based enterprise applications online swiftly in no time.</li>
                         <li>React as a frontend is a free and open-source front-end JavaScript library for building user interfaces or UI components.</li>
                     </ul>
                 </div>

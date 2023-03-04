@@ -106,14 +106,14 @@ function Login() {
                     <br />
                     <div className="form-group">
                         <p>
-                            Looking for a new Job?
-                            <a href="/RegisterCandidate">Register Here</a>
+                            For new Customer
+                            <a href="/RegisterCustomer">Register Here</a>
                         </p>
                     </div>
                     <div className="form-group">
                         <p>
-                            Want to hire new candidates?
-                            <a href="/RegisterRecruiter">Register Here</a>
+                             For new Vendor
+                            <a href="/RegisterVendor">Register Here</a>
                         </p>
                     </div>
 

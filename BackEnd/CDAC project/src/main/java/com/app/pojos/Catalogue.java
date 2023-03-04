@@ -8,17 +8,12 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name="Catalogue")
 @ToString(callSuper = true)
 public class Catalogue extends BaseEntity {
-	
-	
 	
 	public Catalogue() {
 		super();

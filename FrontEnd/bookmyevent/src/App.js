@@ -3,9 +3,9 @@ import React from 'react';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-import RegisterCandidate from "./Component/RegisterCandidate";
+import RegisterCandidate from "./Component/RegisterCustomer";
 import Login from "./Component/Login";
-import RegisterRecruiter from "./Component/RegisterRecruiter";
+import RegisterRecruiter from "./Component/RegisterVendor";
 import Home from "./Component/Home";
 import Help from "./Component/Help";
 import FooterBar from "./Component/FooterBar";

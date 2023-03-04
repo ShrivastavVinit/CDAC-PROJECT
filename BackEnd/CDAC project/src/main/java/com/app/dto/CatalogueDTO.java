@@ -8,28 +8,28 @@ public class CatalogueDTO {
 	
 	private double rate;
 	
-	private Long vendorID;
+	private Long id;
 	
 	public CatalogueDTO() {
 		super();
 	}
 
 
-	public CatalogueDTO(String eventName, double rate,Long vendorID) {
+	public CatalogueDTO(String eventName, double rate,Long id) {
 		super();
 		EventName = eventName;
 		this.rate = rate;
-		this.vendorID=vendorID;
+		this.id=id;
 		
 	}
 	
-	public Long getVendorID() {
-		return vendorID;
+	public Long getid() {
+		return id;
 	}
 
 
-	public void setVendorID(Long V_id) {
-		this.vendorID = V_id;
+	public void setid(Long V_id) {
+		this.id = V_id;
 	}
 
 

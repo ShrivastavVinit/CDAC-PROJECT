@@ -18,27 +18,22 @@ function Help() {
 
             <div data-aos="fade-up" className="tag" >
                 <div className="tagtitle">Login</div>
-                <div className="tagcontent">Welcome to our Rozgar.com Portal. Then do make sure you have your login Id and an email both for Recruiters as well as for Candidates.
+                <div className="tagcontent">Welcome to our Book My Event Portal. Make sure you have your login Id and an email either for Vendor or for Customer.
                     If you are New to this place then please Register.</div>
             </div>
             <div className="tag">
                 <div className="tagtitle">SignUp</div>
-                <div className="tagcontent">If you dont have an account on Rozgar.com then please SignUp and start Your Search on Rozgar.com as a Recruiter as well as Candidate</div>
+                <div className="tagcontent">If you don't have an account  then please SignUp and start Your Search on Book My Event portal as a Vendor or for Customer.</div>
             </div>
             <div data-aos="fade-up" className="tag">
-                <div className="tagtitle">Recruiter</div>
-                <div className="tagcontent">The Recruiter can login and Start his search for candidate after filling the form and mentioning the recuirements</div>
+                <div className="tagtitle">Vendor</div>
+                <div className="tagcontent">The Vendor can login and enter or add their sevices after filling the form.</div>
             </div>
             <div data-aos="fade-up" className="tag">
-                <div className="tagtitle">Candidate</div>
-                <div className="tagcontent">The Candidate can login and Start his search for Job after filling the form and mentioning his Educational details </div>
+                <div className="tagtitle">Customer</div>
+                <div className="tagcontent">The Customer can login and Start his search for budget friendly events after filling the form.</div>
             </div>
-            <div data-aos="fade-up" className="tag">
-                <div className="tagtitle">AboutUs</div>
-                <div className="tagcontent">The Moto of the company  and the
-                    Contact details of the creaters of the company with Name, phone no.,PRN no. and Email id are given here.</div>
-            </div>
-
+           
             <div data-aos="fade-up" className="tag">
                 <div className="tagtitle">Contact Us</div>
                 <div className="tagcontent">The place where you can address your issues by sending an email and be rest assured to get it sorted within 24 hours</div>

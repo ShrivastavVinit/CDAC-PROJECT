@@ -42,7 +42,7 @@ public class CatalogueController {
 		return ctlg.getAllcatalogueDetails();
 	}
 	
-	@PostMapping
+	@PostMapping("/{vendor}")
 	public Catalogue addNewCatalogueItem(@RequestBody CatalogueDTO cat)
 	{
 		System.out.println("in save catalogue "+cat);
