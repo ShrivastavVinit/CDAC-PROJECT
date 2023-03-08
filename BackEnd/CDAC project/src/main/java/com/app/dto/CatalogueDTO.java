@@ -1,6 +1,6 @@
 package com.app.dto;
 
-import com.app.pojos.Vendor;
+
 
 public class CatalogueDTO {
 	
@@ -19,7 +19,7 @@ public class CatalogueDTO {
 		super();
 		EventName = eventName;
 		this.rate = rate;
-		this.id=id;
+		
 		
 	}
 	

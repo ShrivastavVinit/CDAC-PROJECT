@@ -17,5 +17,5 @@ public interface VendorService {
 		
 		Vendor authenticateVendor(LoginRequestDto dto);
 	
-		Catalogue addNewcat(Long id);
+		Catalogue addNewcat(Long categoryId,Long vendorId);
 }

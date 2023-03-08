@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
-function CandidateDashboard() {
+function CustomerDashboard() {
     const navigate = useNavigate();
     const [currentApplication, setCurrentApplication] = useState([]);
     const [currentIndex, setcurrentIndex] = useState(-1);
@@ -38,7 +38,7 @@ function CandidateDashboard() {
             // const list = axios.get(`Http://localhost:8082/track/job/${id}`);
             // console.log("data is : " + list.data);
             // setCurrentApplication(list.data);
-            axios.get(`Http://localhost:8082/track/job/${id}`).then((response) => {
+            axios.get(`Http://localhost:8080/track/job/${id}`).then((response) => {
                 // console.log(response.data);
                 setCurrentApplication(response.data);
 
@@ -59,7 +59,7 @@ function CandidateDashboard() {
                 <div>
                     <div className="mini-card">
                         <div className="header-sub">
-                            <p>Job Search</p>
+                            <p>Event Search</p>
                         </div>
                         <br />
                         <Button variant="success" href="get/job">Search and Apply</Button>
@@ -112,4 +112,4 @@ function CandidateDashboard() {
     )
 }
 
-export default CandidateDashboard
+export default CustomerDashboard

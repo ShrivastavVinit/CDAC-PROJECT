@@ -16,7 +16,7 @@ function RecruiterDashboard() {
 
 
     const viewJobs = (id) => {
-        axios.get(`http://localhost:8082/view/job/${id}`).then(response => {
+        axios.get(`http://localhost:8080/view/job/${id}`).then(response => {
             setJobs(response.data);
             console.log(response.data);
         }).catch(e => {

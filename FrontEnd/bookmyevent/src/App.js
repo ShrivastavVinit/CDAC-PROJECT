@@ -3,25 +3,28 @@ import React from 'react';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-import RegisterCandidate from "./Component/RegisterCustomer";
 import Login from "./Component/Login";
-import RegisterRecruiter from "./Component/RegisterVendor";
+import RegisterVendor from "./Component/RegisterVendor";
 import Home from "./Component/Home";
 import Help from "./Component/Help";
 import FooterBar from "./Component/FooterBar";
 import HeaderBar from "./Component/HeaderBar";
-import EditCandidateProfile from "./Component/EditCandidateProfile";
-import JobDisplay from "./Component/JobDisplay";
-import EditRecruiterProfile from "./Component/EditRecruiterProfile";
+import EditCustomerProfile from "./Component/EditCustomerProfile";
+import EditVendorProfile from "./Component/EditVendorProfile";
 import Contact from "./Component/Contact";
 import Register from "./Component/Register";
-import CandidateDashboard from "./Component/CandidateDashboard";
-import CandidatesApplied from "./Component/CandidatesApplied";
-import RecruiterDashboard from "./Component/RecruiterDashboard";
-import JobPost from "./Component/JobPost";
+
+// import JobDisplay from "./Component/JobDisplay";
+// import CustomerDashboard from "./Component/CustomerDashboard";
+// import CandidatesApplied from "./Component/CandidatesApplied";
+// import RecruiterDashboard from "./Component/RecruiterDashboard";
+// import JobPost from "./Component/JobPost";
+//import CheckStatus from "./Component/CheckStatus";
+
+
 import Profile from "./Component/Profile";
-import CheckStatus from "./Component/CheckStatus";
 import About from "./Component/About";
+import RegisterCustomer from "./Component/RegisterCustomer";
 
 
 function App() {
@@ -34,22 +37,25 @@ function App() {
           <Route path="/home" element={<Home />}></Route>
 
           <Route path="/about" element={<About />}></Route>
-
-          <Route path="/Profile/:id" element={<Profile />}></Route>
-          <Route path="/checkStatus/:id" element={<CheckStatus />}></Route>
-          <Route path="/RecruiterDashboard" element={<RecruiterDashboard />}></Route>
-          <Route path="/JobPost" element={<JobPost />}></Route>
           <Route path="/Header" element={<HeaderBar></HeaderBar>}></Route>
-          <Route path="/CandidateApplied/:jobid" element={<CandidatesApplied />}></Route>
-          <Route path="/CandidateDashboard" element={<CandidateDashboard />}></Route>
-          <Route path="/get/job" element={<JobDisplay></JobDisplay>}></Route>
-          <Route path="/EditCandidate/:id" element={<EditCandidateProfile />}></Route>
+          <Route path="/Profile/:id" element={<Profile />}></Route>
+
+
+          {/* <Route path="/checkStatus/:id" element={<CheckStatus />}></Route> */}
+          {/* <Route path="/RecruiterDashboard" element={<RecruiterDashboard />}></Route> */}
+          {/* <Route path="/JobPost" element={<JobPost />}></Route> */}
+          {/* <Route path="/CandidateApplied/:jobid" element={<CandidatesApplied />}></Route> */}
+          {/* <Route path="/CustomerDashboard" element={<CustomerDashboard />}></Route> */}
+          {/* <Route path="/get/job" element={<JobDisplay></JobDisplay>}></Route> */}
+
+
+          <Route path="/EditCustomer/:id" element={<EditCustomerProfile />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/EditRecruiter/:id" element={<EditRecruiterProfile />}></Route>
-          <Route path="/RegisterCandidate" element={<RegisterCandidate />}></Route>
+          <Route path="/EditVendor/:id" element={<EditVendorProfile />}></Route>
+          <Route path="/RegisterCustomer" element={<RegisterCustomer />}></Route>
           <Route path="/Login" element={<Login />}></Route>
-          <Route path="/RegisterRecruiter" element={<RegisterRecruiter />}></Route>
+          <Route path="/RegisterVendor" element={<RegisterVendor />}></Route>
           <Route path="/Help" element={<Help />}></Route>
         </Routes>
       </div>

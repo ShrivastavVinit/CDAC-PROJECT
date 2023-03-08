@@ -15,17 +15,17 @@ function RegisterCustomer() {
         fullname: "", password: "", email: "", mobile: "",  Address: ""
     };
 
-    const [custValues, setCustValues] = useState(initialValues);
+    const [customerValues, setcustomerValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setCustValues({ ...custValues, [name]: value });
+        setcustomerValues({ ...customerValues, [name]: value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setFormErrors(validate(custValues));
+        setFormErrors(validate(customerValues));
         if (
             formErrors.email != null || formErrors.fullname != null ||  formErrors.mobile != null ||
             formErrors.password != null ||  formErrors.Address != null 
@@ -40,15 +40,15 @@ function RegisterCustomer() {
         //         if (Object.keys(formErrors).length === 0) {
         if (isSubmit) {
             let data = {
-                fullname: custValues.fullname,
-                password: custValues.password,
-                email: custValues.email,
-                mobile: custValues.mobile, 
-                address: custValues.Address,
+                fullname: customerValues.fullname,
+                email: customerValues.email,
+                password: customerValues.password,
+                mobile: customerValues.mobile, 
+                address: customerValues.Address,
                 
                 // role: "customer"
             }
-            const url = "http://localhost:8082/signup/candidate ";
+            const url = "http://localhost:8080/signup/customer ";
             //     const list = await axios.post(url, data);
             //     Swal.fire({
             //         icon: "success",
@@ -145,7 +145,7 @@ function RegisterCustomer() {
     useEffect(() => {
         console.log(formErrors);
         if (Object.keys(formErrors).length === 0 && isSubmit) {
-            console.log(custValues);
+            console.log(customerValues);
         }
     }, []);
 
@@ -173,7 +173,7 @@ function RegisterCustomer() {
                                         type="text"
                                         className="form-control"
                                         name="fullname"
-                                        value={custValues.fullname}
+                                        value={customerValues.fullname}
                                         onChange={handleChange}
                                     // validations={[required, fullname]}
                                     />
@@ -186,7 +186,7 @@ function RegisterCustomer() {
                                         type="text"
                                         className="form-control"
                                         name="email"
-                                        value={custValues.email}
+                                        value={customerValues.email}
                                         onChange={handleChange}
                                     //validations={[required, email]}
                                     />
@@ -199,7 +199,7 @@ function RegisterCustomer() {
                                         type="password"
                                         className="form-control"
                                         name="password"
-                                        value={custValues.password}
+                                        value={customerValues.password}
                                         onChange={handleChange}
                                     //validations={[required, vpassword]}
                                     />
@@ -214,7 +214,7 @@ function RegisterCustomer() {
                                         type="text"
                                         className="form-control"
                                         name="mobile"
-                                        value={custValues.mobile}
+                                        value={customerValues.mobile}
                                         onChange={handleChange}
                                     // validations={[required, vmobile]}
                                     />
@@ -229,7 +229,7 @@ function RegisterCustomer() {
                                         type="text"
                                         className="form-control"
                                         name="Address"
-                                        value={custValues.Address}
+                                        value={customerValues.Address}
                                         onChange={handleChange}
                                     // validations={[required, vmobile]}
                                     />

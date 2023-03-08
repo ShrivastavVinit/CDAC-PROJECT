@@ -36,17 +36,17 @@ public class CatalogueController {
 	}
 	
 	@GetMapping
-	public List<CatalogueDTO> getCatalogueItem()
+	public List<Catalogue> getCatalogueItem()
 	{
 		System.out.println("in get catalogue");
 		return ctlg.getAllcatalogueDetails();
 	}
 	
-	@PostMapping("/{vendor}")
-	public Catalogue addNewCatalogueItem(@RequestBody CatalogueDTO cat)
+	@PostMapping("/{vendorId}")
+	public Catalogue addNewCatalogueItem(@RequestBody CatalogueDTO cat,@PathVariable Long vendorId)
 	{
 		System.out.println("in save catalogue "+cat);
-		return ctlg.addNewCatalogueItem(cat);
+		return ctlg.addNewCatalogueItem(cat, vendorId);
 	}
 	
 	@DeleteMapping("/{id}")

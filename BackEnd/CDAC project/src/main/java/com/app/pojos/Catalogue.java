@@ -2,6 +2,7 @@ package com.app.pojos;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,7 +13,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="Catalogue")
-@ToString(callSuper = true)
+//@ToString(callSuper = true)
 public class Catalogue extends BaseEntity {
 	
 	public Catalogue() {
@@ -26,7 +27,7 @@ public class Catalogue extends BaseEntity {
 	private double rate;
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "vendor_id",nullable = false)
 	@JsonBackReference
 	private Vendor vendors;
@@ -47,19 +48,24 @@ public class Catalogue extends BaseEntity {
 		this.rate = rate;
 	}
 
-//	public Vendor getVendors() {
-//		return vendors;
-//	}
-//
-//	public void setVendors(Vendor vendors) {
-//		this.vendors = vendors;
-//	}
+	public Vendor getVendors() {
+		return vendors;
+	}
+
+	public void setVendors(Vendor vendors) {
+		this.vendors = vendors;
+	}
 
 	public Catalogue(String eventName, double rate, Vendor vendors) {
 		super();
 		EventName = eventName;
 		this.rate = rate;
 		this.vendors = vendors;
+	}
+
+	@Override
+	public String toString() {
+		return "Catalogue [EventName=" + EventName + ", rate=" + rate + ", vendors=" + vendors + "]";
 	}
 	
 	

@@ -2,59 +2,41 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { CalendarTodayTwoTone } from "@mui/icons-material";
 
-function EditCandidateProfile(props) {
+function EditCustomerProfile() {
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const [customer, setcustomer] = useState("")
+    const currentUser = JSON.parse(localStorage.getItem('user'));
     const initialValues = {
-        fullname: "",
-        username: "",
-        password: "",
-        email: "",
-        mobile: "",
-        gender: "",
-        location: "",
-        skills: "",
-        hqual: "",
-        major: "",
-        institute: "",
-        yoq: "",
-        marks: "",
-        exp: "",
-        yoexp: "",
-        company: "",
-        foexp: "",
-        description: "",
+        fullname: customer.fullname,
+        email: customer.email,
+        password: customer.password,
+        mobile: customer.mobile,
+        address: customer.address,
     };
 
-    const [candValues, setCandValues] = useState(initialValues);
+    const [customerValues, setCustomerValues] = useState({});
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState("");
-    const currentUser = JSON.parse(localStorage.getItem('user'));
-    // const [currentCandidate, setcurrentCandidate] = useState(initialValues);
+    const [isSubmit, setIsSubmit] = useState(false);
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setCandValues({ ...candValues, [name]: value });
+        setCustomerValues({ ...customerValues, [name]: value });
     };
 
     const handleSubmit = async (e) => {
-        console.log("handlesubmit" + candValues.fullname);
         e.preventDefault();
-        setFormErrors(validate(candValues));
+        setFormErrors(validate(customerValues));
         if (
+            // formErrors.email != null ||
             formErrors.fullname != null ||
+            // formErrors.username != null ||
             formErrors.mobile != null ||
-            formErrors.gender != null ||
-            formErrors.location != null ||
-            formErrors.skills != null ||
-            formErrors.hqual != null ||
-            formErrors.major != null ||
-            formErrors.institute != null ||
-            formErrors.yoq != null ||
-            formErrors.marks != null ||
-            formErrors.exp != null ||
-            formErrors.yoexp != null ||
-            formErrors.company != null ||
-            formErrors.foexp != null ||
-            formErrors.description != null
+            formErrors.password != null ||
+            formErrors.address != null
+           
         ) {
             console.log("set is false");
             setIsSubmit(false);
@@ -65,35 +47,21 @@ function EditCandidateProfile(props) {
         //         if (Object.keys(formErrors).length === 0) {
         if (isSubmit) {
             let data = {
-                // userid: candValues.userid,
-                fullname: candValues.fullname,
-                // password: candValues.password,
-                // email: candValues.email,
-                mobile: candValues.mobile,
-                gender: candValues.gender,
-                location: candValues.location,
-                skills: candValues.skills,
-                hqual: candValues.hqual,
-                major: candValues.major,
-                institute: candValues.institute,
-                yoq: candValues.yoq,
-                marks: candValues.marks,
-                exp: candValues.exp,
-                yoexp: candValues.yoexp,
-                company: candValues.company,
-                foexp: candValues.foexp,
-                description: candValues.description,
+                fullname: customerValues.fullname,
+                email: currentUser.email,
+                password: customerValues.password,
+                mobile: customerValues.mobile,
+                address: customerValues.address,
+               
             };
-            const user = JSON.parse(localStorage.getItem("user"));
-            const url = "http://localhost:8082/profileCandedit/" + user.userId;
-            const list = await axios.put(url, data);
-            Swal.fire({
-                icon: "success",
-                title: "Profile Updated",
-                text: "Congratulations Profile Updated",
+            const url = `http://localhost:8080/profileCandedit/${currentUser.candId}`;
+            axios.put(url, data).then((response) => {
+                console.log(response.data);
+            }).catch((error) => {
+                console.log(error);
             });
-            console.log(list.data);
-        } else if (isSubmit === false) {
+
+        } else {
             Swal.fire({
                 icon: "error",
                 title: "Try again",
@@ -110,78 +78,58 @@ function EditCandidateProfile(props) {
         const regex2 = /^((\+)?(\d{2}[-]))?(\d{10}){1}?$/i;
         const regex4 = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
-        if (!values.fullname) {
-            formErrors.fullname = "Fullname name is required!";
-        } else if (!regex3.test(values.fullname)) {
+
+        if (!regex3.test(values.fullname)) {
             formErrors.fullname = "This is not a valid Name format!";
         }
 
-        if (!values.mobile) {
-            formErrors.mobile = "Contact number is required!";
-        } else if (!regex2.test(values.mobile)) {
+        if (!regex4.test(values.password)) {
+            formErrors.username = "This is not a valid Password format!";
+        }
+        if (!regex2.test(values.mobile)) {
             formErrors.mobile = "This is not a valid phoneNo format!";
         }
         if (!values.gender) {
             formErrors.gender = "Gender required";
         }
         if (!values.location) {
-            formErrors.location = "location is required";
-        }
-        if (!values.skills) {
-            formErrors.skills = "Skills is Required";
-        }
-        if (!values.hqual) {
-            formErrors.hqual = "Qualification is Required";
-        }
-        if (!values.major) {
-            formErrors.major = "Major qualification is Required";
-        }
-        if (!values.institute) {
-            formErrors.institute = "Institute is required";
-        }
-        if (!values.yoq) {
-            formErrors.yoq = "Year of Qualification is required";
-        }
-        if (!values.marks) {
-            formErrors.marks = "Marks of Qualification is required";
-        }
-        if (!values.exp) {
-            formErrors.exp = "Experience is required";
-        }
-        if (!values.yoexp) {
-            formErrors.yoexp = "Experience is required";
-        }
-        if (!values.company) {
-            formErrors.company = "Company is required";
-        }
-        if (!values.foexp) {
-            formErrors.foexp = "Field of Expertize is required";
-        }
-        if (!values.description) {
-            formErrors.description = "Field of description is required";
+            formErrors.address = "address is required";
         }
 
         return formErrors;
     };
 
-    function getCandidate(id) {
+    const getUser = () => {
         const BASE_URL = `http://localhost:8082/candidate/${id}`;
-        axios
-            .get(BASE_URL)
-            .then((response) => {
-                setCandValues(response.data);
+        axios.get(BASE_URL)
+            .then(response => {
                 console.log(response.data);
+                setCustomerValues(response.data);
             })
-            .catch((e) => {
+            .catch(e => {
                 console.log(e);
             });
     }
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        getCandidate(user.userId);
-        console.log(formErrors);
-        if (Object.keys(formErrors).length === 0 && isSubmit) {
+        if (localStorage.getItem("user") == null) {
+            Swal.fire({
+                icon: "error",
+                title: "Login Required",
+                text: "please login to stay on this page"
+            })
+            navigate("/Login");
+        }
+        else {
+
+            getUser();
+            console.log(formErrors);
+            if (Object.keys(formErrors).length === 0 && isSubmit) {
+                console.log("candValuesinForm", candValues);
+            }
+            console.log("cand", candidate);
+            console.log("currentUser", currentUser);
+            console.log("CandValueinUseEffect", candValues);
         }
     }, []);
 
@@ -197,8 +145,8 @@ function EditCandidateProfile(props) {
                         {currentUser.username}
                     </p>
                     <p className="form-group">
-                        <strong>UserId:</strong>
-                        {currentUser.candId}
+                        <strong>Application No:</strong>
+                        {candValues.candid}
                     </p>
                     <p className="form-group">
                         <strong>Email:</strong>
@@ -206,18 +154,18 @@ function EditCandidateProfile(props) {
                     </p>
                     <p className="form-group">
                         <strong>Authorities:</strong>
-                        {currentUser.role}
-                        {/* {currentUser.roles &&
-              currentUser.roles.map((role, index) => (
-                <span key={index}>{role}</span>
-              ))} */}
+                        {currentUser.role
+                            //  && currentUser.roles.map((role, index) => (
+                            //     <span key={index}>{role}</span>
+                            //   ))
+                        }
                     </p>
                     <div className="form-group">
                         <label htmlFor="fullname">Full Name</label>
                         <input
                             type="text"
                             className="form-control"
-                            name="fullname"
+                            id="fullname"
                             value={candValues.fullname}
                             onChange={handleChange}
                         />
@@ -228,13 +176,13 @@ function EditCandidateProfile(props) {
                         <input
                             type="text"
                             className="form-control"
-                            name="mobile"
+                            id="mobile"
                             value={candValues.mobile}
                             onChange={handleChange}
                         />
                         <p className="text-danger fs-6">{formErrors.mobile}</p>
                     </div>
-                    {/* <div className="form-group">
+                    <div className="form-group">
                         <label htmlFor="gender">Gender</label>
                         <input
                             type="radio"
@@ -258,13 +206,13 @@ function EditCandidateProfile(props) {
                         />
                         Others
                         <p className="text-danger fs-6">{formErrors.gender}</p>
-                    </div> */}
+                    </div>
 
                     <div class="form-group">
-                        <label htmlFor="location">Current Location *</label>
+                        <label htmlFor="location">Current Location</label>
                         <input
                             type="text"
-                            name="location"
+                            id="location"
                             className="form-control"
                             // placeholder={recruiter.location}
                             value={candValues.location}
@@ -278,7 +226,7 @@ function EditCandidateProfile(props) {
                         <input
                             type="text"
                             className="form-control"
-                            name="skills"
+                            id="skills"
                             value={candValues.skills}
                             onChange={handleChange}
                         />
@@ -287,7 +235,7 @@ function EditCandidateProfile(props) {
                     <div class="form-group">
                         <label htmlFor="hqual">Highest Qualification *</label>
                         <input
-                            name="hqual"
+                            id="hqual"
                             className="form-control"
                             value={candValues.hqual}
                             onChange={handleChange}
@@ -319,7 +267,7 @@ function EditCandidateProfile(props) {
                     <div class="form-group">
                         <label htmlFor="yoq">Year Of Qualification *</label>
                         <input
-                            name="yoq"
+                            id="yoq"
                             className="form-control"
                             value={candValues.yoq}
                             onChange={handleChange}
@@ -351,7 +299,7 @@ function EditCandidateProfile(props) {
                     <div class="form-group">
                         <label htmlFor="yoexp">Year Of Experience *</label>
                         <input
-                            name="yoexp"
+                            id="yoexp"
                             className="form-control"
                             value={candValues.yoexp}
                             onChange={handleChange}
@@ -385,7 +333,7 @@ function EditCandidateProfile(props) {
                         <input
                             type="text"
                             className="form-control"
-                            name="description"
+                            id="description"
                             value={candValues.description}
                             onChange={handleChange}
                         />
@@ -403,7 +351,7 @@ function EditCandidateProfile(props) {
                         <Button
                             variant="danger"
                             //   href={`/profile/${currentUser.id}`}
-                            name="return-profile"
+                            id="return-profile"
                         >
                             Return To Profile
                         </Button>
@@ -414,4 +362,4 @@ function EditCandidateProfile(props) {
     );
 }
 
-export default EditCandidateProfile;
+export default EditCustomerProfile;

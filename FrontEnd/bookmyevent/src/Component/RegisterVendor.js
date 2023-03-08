@@ -9,23 +9,23 @@ import { useNavigate } from 'react-router-dom';
 // import SweetAlert from 'react-bootstrap-sweetalert';
 
 
-function RegisterCustomer() {
+function RegisterVendor() {
     const navigate = useNavigate();
     const initialValues = {
         fullname: "", password: "", email: "", mobile: "",  Address: ""
     };
 
-    const [custValues, setCustValues] = useState(initialValues);
+    const [vendorValues, setvendorValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setCustValues({ ...custValues, [name]: value });
+        setvendorValues({ ...vendorValues, [name]: value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setFormErrors(validate(custValues));
+        setFormErrors(validate(vendorValues));
         if (
             formErrors.email != null || formErrors.fullname != null ||  formErrors.mobile != null ||
             formErrors.password != null ||  formErrors.Address != null 
@@ -40,15 +40,15 @@ function RegisterCustomer() {
         //         if (Object.keys(formErrors).length === 0) {
         if (isSubmit) {
             let data = {
-                fullname: custValues.fullname,
-                password: custValues.password,
-                email: custValues.email,
-                mobile: custValues.mobile, 
-                address: custValues.Address,
+                fullname: vendorValues.fullname,
+                password: vendorValues.password,
+                email: vendorValues.email,
+                mobile: vendorValues.mobile, 
+                address: vendorValues.Address,
                 
                 // role: "customer"
             }
-            const url = "http://localhost:8082/signup/candidate ";
+            const url = "http://localhost:8080/signup/vendor ";
             //     const list = await axios.post(url, data);
             //     Swal.fire({
             //         icon: "success",
@@ -138,14 +138,12 @@ function RegisterCustomer() {
             formErrors.Address = "Address is required";
         }
        
-   
-
         return formErrors;
     };
     useEffect(() => {
         console.log(formErrors);
         if (Object.keys(formErrors).length === 0 && isSubmit) {
-            console.log(custValues);
+            console.log(vendorValues);
         }
     }, []);
 
@@ -173,7 +171,7 @@ function RegisterCustomer() {
                                         type="text"
                                         className="form-control"
                                         name="fullname"
-                                        value={custValues.fullname}
+                                        value={vendorValues.fullname}
                                         onChange={handleChange}
                                     // validations={[required, fullname]}
                                     />
@@ -186,7 +184,7 @@ function RegisterCustomer() {
                                         type="text"
                                         className="form-control"
                                         name="email"
-                                        value={custValues.email}
+                                        value={vendorValues.email}
                                         onChange={handleChange}
                                     //validations={[required, email]}
                                     />
@@ -199,7 +197,7 @@ function RegisterCustomer() {
                                         type="password"
                                         className="form-control"
                                         name="password"
-                                        value={custValues.password}
+                                        value={vendorValues.password}
                                         onChange={handleChange}
                                     //validations={[required, vpassword]}
                                     />
@@ -214,7 +212,7 @@ function RegisterCustomer() {
                                         type="text"
                                         className="form-control"
                                         name="mobile"
-                                        value={custValues.mobile}
+                                        value={vendorValues.mobile}
                                         onChange={handleChange}
                                     // validations={[required, vmobile]}
                                     />
@@ -229,7 +227,7 @@ function RegisterCustomer() {
                                         type="text"
                                         className="form-control"
                                         name="Address"
-                                        value={custValues.Address}
+                                        value={vendorValues.Address}
                                         onChange={handleChange}
                                     // validations={[required, vmobile]}
                                     />
@@ -295,4 +293,4 @@ function RegisterCustomer() {
     );
 }
 
-export default RegisterCustomer
+export default RegisterVendor

@@ -9,9 +9,9 @@ import com.app.pojos.Catalogue;
 public interface CatalogueService {
 	
 	
-	 List<CatalogueDTO> getAllcatalogueDetails(); 
+	 List<Catalogue> getAllcatalogueDetails(); 
 		
-	  Catalogue addNewCatalogueItem(CatalogueDTO catlogue);
+	  Catalogue addNewCatalogueItem(CatalogueDTO catlogue,Long vendorId);
 		
 		String deleteCatalogueItem(Long id);	
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
+import javax.xml.catalog.Catalog;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,15 +66,18 @@ public class VendorServiceImpl implements VendorService {
 	}
 
 	@Override
-	public Catalogue addNewcat(Long verndorId) {
+	public Catalogue addNewcat(Long catalogId,Long vendorId) {
 		// TODO Auto-generated method stub
-		Vendor vnd =VendorRepo.findById(verndorId)
-				.orElseThrow(()->new ResourceNotFoundException("wrong Id !!!!!"));
+		Catalogue catalogue=ctlRepo.findById(catalogId).orElseThrow(()->new ResourceNotFoundException("wrong Id catalogue !!!!!"));
+		Vendor vnd =VendorRepo.findById(vendorId)
+				.orElseThrow(()->new ResourceNotFoundException("wrong Id vendor!!!!!"));
 				
-				Catalogue ctl=new Catalogue();
-				ctl.s
+//				Catalogue ctl=new Catalogue();
+				catalogue.setVendors(vnd);
+//				ctl.setVendors(vnd);
+//				
 
-		return ctlRepo.save(ctl);
+		return ctlRepo.save(catalogue);
 	}
 
 }

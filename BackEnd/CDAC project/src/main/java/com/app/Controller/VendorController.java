@@ -54,12 +54,12 @@ public class VendorController {
 		return vdr.addNewVendor(vendor);
 	}
 	
-	@PostMapping("/{vendorId}/catalogue")
-	public ResponseEntity<Void> addNewcat(@PathVariable Long verndorId){
-		
-		vdr.addNewcat(verndorId);
-		return ResponseEntity.ok().build();
-	}
+//	@PostMapping("/{catalogId}/catalogue/{vendorId}")
+//	public ResponseEntity<Void> addNewcat(@PathVariable Long catalogId,@PathVariable Long vendorId){
+//		
+//		vdr.addNewcat(catalogId, vendorId);
+//		return ResponseEntity.ok().build();
+//	}
 	
 	
 	

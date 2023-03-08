@@ -16,8 +16,8 @@ const Register = () => {
               Find the most suitable candidates here. Register Now!!!
             </Card.Title>
             <Card.Text>Click below to continue</Card.Text>
-            <Button variant="success" href="/RegisterRecruiter">
-              For Recruiters
+            <Button variant="success" href="/RegisterVendor">
+              For Vendor
             </Button>
           </Card.Body>
         </Card>
@@ -34,8 +34,8 @@ const Register = () => {
               Find your dream job right here. Register Now!!!
             </Card.Title>
             <Card.Text>Click below to continue</Card.Text>
-            <Button variant="success" href="/RegisterCandidate">
-              For Candidates
+            <Button variant="success" href="/RegisterCustomer">
+              For Customer
             </Button>
           </Card.Body>
         </Card>
