@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
-import javax.xml.catalog.Catalog;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,10 +58,12 @@ public class VendorServiceImpl implements VendorService {
 	}
 
 	@Override
-	public Vendor authenticateVendor(LoginRequestDto dto) {
+	public VendorDTO authenticateVendor(LoginRequestDto dto) {
 
-		return VendorRepo.findByEmailAndPassword(dto.getEmail(), dto.getPassword())
+		Vendor vendor = VendorRepo.findByEmailAndPassword(dto.getEmail(), dto.getPassword())
 				.orElseThrow(() -> new ResourceNotFoundException("wrong Credentials !!!!!"));
+	
+		return mapper.map(vendor, VendorDTO.class);
 	}
 
 	@Override
@@ -79,5 +80,13 @@ public class VendorServiceImpl implements VendorService {
 
 		return ctlRepo.save(catalogue);
 	}
+
+	@Override
+	public Vendor fetchVendorDetails(String email) {
+		return VendorRepo.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Invalid vendor email !!!!!"));
+
+	}
+
+	
 
 }

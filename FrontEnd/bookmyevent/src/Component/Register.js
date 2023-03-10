@@ -9,11 +9,11 @@ const Register = () => {
       <div>
         <Card>
           <Card.Header as="h5">
-            Are you a Recruiter looking to hire?
+            Are you a Vendor looking to organize an event?
           </Card.Header>
           <Card.Body>
             <Card.Title>
-              Find the most suitable candidates here. Register Now!!!
+              you can register yourself here
             </Card.Title>
             <Card.Text>Click below to continue</Card.Text>
             <Button variant="success" href="/RegisterVendor">
@@ -27,11 +27,11 @@ const Register = () => {
       <div>
         <Card>
           <Card.Header as="h5">
-            Are you a Candidate looking for a job?
+            Are you a Customer looking to host an event
           </Card.Header>
           <Card.Body>
             <Card.Title>
-              Find your dream job right here. Register Now!!!
+              Get exciting deals on our portal.
             </Card.Title>
             <Card.Text>Click below to continue</Card.Text>
             <Button variant="success" href="/RegisterCustomer">

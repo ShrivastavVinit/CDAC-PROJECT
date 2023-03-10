@@ -2,6 +2,9 @@ package com.app.Controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.LoginRequestDto;
 import com.app.dto.VendorDTO;
-import com.app.pojos.Customer;
 import com.app.pojos.Vendor;
 import com.app.service.VendorService;
 
@@ -69,12 +71,22 @@ public class VendorController {
 		return vdr.deleteVendor(id);
 	}
 	
+	
+	
 	@PostMapping("/signin")
-	public Vendor validateVendor(@RequestBody LoginRequestDto dto)
+	public ResponseEntity<?> validateVendor(@RequestBody @Valid LoginRequestDto dto)
 	{
-		System.out.println("in emp signin "+dto);
-		return vdr.authenticateVendor(dto);
+		System.out.println("in vendor signin "+dto);
+		return ResponseEntity.ok(vdr.authenticateVendor(dto));
 	}
 	
+	
+	@GetMapping("/{email}")
+	public Vendor getVendorDetails(@PathVariable @Range(min = 1, max = 10, message = "Vendor Id out of range!!!!!") String email) {
+		System.out.println("in get vendor details " + email);
+		return vdr.fetchVendorDetails(email);
+		
+	}
+
 	
 }

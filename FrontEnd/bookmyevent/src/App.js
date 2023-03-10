@@ -3,7 +3,8 @@ import React from 'react';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-import Login from "./Component/Login";
+import VendorLogin from "./Component/VendorLogin";
+import CustomerLogin from "./Component/CustomerLogin";
 import RegisterVendor from "./Component/RegisterVendor";
 import Home from "./Component/Home";
 import Help from "./Component/Help";
@@ -13,16 +14,17 @@ import EditCustomerProfile from "./Component/EditCustomerProfile";
 import EditVendorProfile from "./Component/EditVendorProfile";
 import Contact from "./Component/Contact";
 import Register from "./Component/Register";
+import Catelogue from "./Component/Catelogue";
 
 // import JobDisplay from "./Component/JobDisplay";
 // import CustomerDashboard from "./Component/CustomerDashboard";
 // import CandidatesApplied from "./Component/CandidatesApplied";
-// import RecruiterDashboard from "./Component/RecruiterDashboard";
+import VendorDashboard from "./Component/VendorDashboard";
 // import JobPost from "./Component/JobPost";
 //import CheckStatus from "./Component/CheckStatus";
 
 
-import Profile from "./Component/Profile";
+// import Profile from "./Component/Profile";
 import About from "./Component/About";
 import RegisterCustomer from "./Component/RegisterCustomer";
 
@@ -38,11 +40,11 @@ function App() {
 
           <Route path="/about" element={<About />}></Route>
           <Route path="/Header" element={<HeaderBar></HeaderBar>}></Route>
-          <Route path="/Profile/:id" element={<Profile />}></Route>
+          {/* <Route path="/Profile/:id" element={<Profile />}></Route> */}
 
 
           {/* <Route path="/checkStatus/:id" element={<CheckStatus />}></Route> */}
-          {/* <Route path="/RecruiterDashboard" element={<RecruiterDashboard />}></Route> */}
+          <Route path="/VendorDashboard" element={<VendorDashboard />}></Route>
           {/* <Route path="/JobPost" element={<JobPost />}></Route> */}
           {/* <Route path="/CandidateApplied/:jobid" element={<CandidatesApplied />}></Route> */}
           {/* <Route path="/CustomerDashboard" element={<CustomerDashboard />}></Route> */}
@@ -54,8 +56,11 @@ function App() {
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/EditVendor/:id" element={<EditVendorProfile />}></Route>
           <Route path="/RegisterCustomer" element={<RegisterCustomer />}></Route>
-          <Route path="/Login" element={<Login />}></Route>
+          <Route path="/VendorLogin" element={<VendorLogin />}></Route>
+          <Route path="/CustomerLogin" element={<CustomerLogin />}></Route>
           <Route path="/RegisterVendor" element={<RegisterVendor />}></Route>
+          <Route path="/Catelogue" element={<Catelogue />}></Route>
+
           <Route path="/Help" element={<Help />}></Route>
         </Routes>
       </div>

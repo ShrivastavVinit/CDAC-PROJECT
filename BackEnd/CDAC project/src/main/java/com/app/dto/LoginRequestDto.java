@@ -32,6 +32,11 @@ public class LoginRequestDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "LoginRequestDto [email=" + email + ", password=" + password + "]";
+	}
 	
 	
 	

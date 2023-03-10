@@ -11,4 +11,6 @@ public interface VendorRepository extends JpaRepository<Vendor, Long>{
 
 	//finder method for signin
 			Optional<Vendor> findByEmailAndPassword(String em, String pass);
+			
+			Optional<Vendor> findByEmail (String email);
 }

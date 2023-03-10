@@ -2,7 +2,11 @@ package com.app.Controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +20,7 @@ import com.app.dto.CustomerDTO;
 import com.app.dto.LoginRequestDto;
 import com.app.pojos.Admin;
 import com.app.pojos.Customer;
+import com.app.pojos.Vendor;
 import com.app.service.CustomerService;
 
 @CrossOrigin(origins  = "http://localhost:3000")
@@ -52,9 +57,17 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/signin")
-	public Customer validateCustomer(@RequestBody LoginRequestDto dto)
+	public ResponseEntity<?> validateCustomer(@RequestBody @Valid LoginRequestDto dto)
 	{
-		System.out.println("in emp signin "+dto);
-		return cstmr.authenticateCustomer(dto);
+		System.out.println("in cust signin "+dto);
+		return ResponseEntity.ok(cstmr.authenticateCustomer(dto));
 	}
+	
+	@GetMapping("/{id}")
+	public Customer getCustomerDetails(@PathVariable @Range(min = 1, max = 10, message = "Customer Id out of range!!!!!") Long id) {
+		System.out.println("in get vendor details " + id);
+		return cstmr.fetchCustomerDetails(id);
+		
+	}
+	
 }

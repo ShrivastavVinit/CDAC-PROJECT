@@ -14,7 +14,7 @@ import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dto.CustomerDTO;
 import com.app.dto.LoginRequestDto;
 import com.app.pojos.Customer;
-
+import com.app.pojos.Vendor;
 import com.app.repository.CustomerRepository;
 
 @Service
@@ -55,6 +55,12 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return cstmrRepo.findByEmailAndPassword(dto.getEmail(), dto.getPassword())
 				.orElseThrow(() -> new ResourceNotFoundException("wrong Credentials !!!!!"));
+	}
+
+	@Override
+	public Customer fetchCustomerDetails(Long id) {
+		return cstmrRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid customer ID !!!!!"));
+
 	}
 
 	

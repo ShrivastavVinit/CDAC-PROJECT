@@ -7,7 +7,6 @@ public class VendorDTO {
 	
 	private String Name;
 	
-
 	private long contactNumber;
 	
 	private String email;
@@ -26,13 +25,14 @@ public class VendorDTO {
 	
 	 
 	
-	public VendorDTO(String name, long contactNumber, String email, String password, String address) {
+	public VendorDTO(String Name, long contactNumber, String email, String password, String Address) {
 		super();
-		Name = name;
+		this.Name = Name;
 		this.contactNumber = contactNumber;
 		this.email = email;
 		this.password = password;
-		Address = address;
+		this.Address = Address;
+		
 	}
 
 
@@ -44,14 +44,7 @@ public class VendorDTO {
 				+ password + ", Address=" + Address + "]";
 	}
 
-	public String getName() {
-		return Name;
-	}
-
-	public void setName(String name) {
-		Name = name;
-	}
-
+	
 	public long getContactNumber() {
 		return contactNumber;
 	}
@@ -76,14 +69,35 @@ public class VendorDTO {
 		this.password = password;
 	}
 
+
+
+
+	public String getName() {
+		return Name;
+	}
+
+
+
+
+	public void setName(String Name) {
+		this.Name = Name;
+	}
+
+
+
+
 	public String getAddress() {
 		return Address;
 	}
 
-	public void setAddress(String address) {
-		Address = address;
+
+
+
+	public void setAddress(String Address) {
+		this.Address = Address;
 	}
-	
+
+
 	
 
 }
